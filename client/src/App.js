@@ -3,11 +3,11 @@ import { Route, Routes } from "react-router-dom";
  
 
 import Navbar from "./components/navbar";
-import RecordList from "./components/recordList";
-import Detail52 from "./components/Detail52";
-import Chart from "./components/Chart";
-import Kwery from "./components/Kwery";
-import FilterList from "./components/filterList";
+import GetAllRecords from "./components/GetAllRecords";
+import GetRecordDetails from "./components/GetRecordDetails";
+import GetChartData from "./components/GetChartData";
+import GetFilter from "./components/GetFilter";
+import GetFilteredRecords from "./components/GetFilteredRecords";
 
  
 const App = () => {
@@ -15,11 +15,11 @@ const App = () => {
    <div>
      <Navbar />
      <Routes>
-       <Route exact path="/" element={<RecordList />} />
-	   <Route path="/detail/:id" element={<Detail52 />} />
-	   <Route path="/chartdata/:id" element={<Chart />} />
-	   <Route path="/kwery" element={<Kwery />} />
-	   <Route path="/filter" element={<FilterList />} />
+       <Route exact path="/" element={<GetAllRecords />} />
+	   <Route path="/getrecorddetails/:id" element={<GetRecordDetails />} />
+	   <Route path="/getchartdata/:id" element={<GetChartData />} />
+	   <Route path="/getfilter" element={<GetFilter />} />
+	   <Route path="/getfilteredrecords/:kS" element={<GetFilteredRecords />} />
      </Routes>
    </div>
  );

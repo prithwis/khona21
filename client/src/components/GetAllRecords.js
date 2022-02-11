@@ -7,20 +7,20 @@ const Record = (props) => (
    <td>{props.record.pid.cID}</td>
    <td>
 
-	 <Link className="btn btn-link" to={`/detail/${props.record.pid.cID}`}>Detail</Link> |
-     <Link className="btn btn-link" to={`/chartdata/${props.record.pid.cID}`}>Chart</Link>
+	 <Link className="btn btn-link" to={`/getrecorddetails/${props.record.pid.cID}`}>Detail</Link> |
+     <Link className="btn btn-link" to={`/getchartdata/${props.record.pid.cID}`}>Chart</Link>
      
    </td>
  </tr>
 );
  
-export default function FilterList() {
+export default function GetAllRecords() {
  const [records, setRecords] = useState([]);
  
  // This method fetches the records from the database.
  useEffect(() => {
    async function getRecords() {
-     const response = await fetch(`http://localhost:5000/allrecords/`);
+     const response = await fetch(`http://localhost:5000/getallrecords/`);
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -43,12 +43,9 @@ export default function FilterList() {
  function recordList() {
    return records.map((record) => {
      return (
-	 <>
-	   <h3>Filter List</h3>  
        <Record
          record={record}
        />
-	  </>
      );
    });
  }

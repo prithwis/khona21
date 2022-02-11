@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
  
-export default function Detail52() {
+export default function GetRecordDetails() {
  const params = useParams();
  const [dbdata, setData] = useState('empty52');
  
  useEffect(() => {
    async function getData() {
-   const response = await fetch(`http://localhost:5000/record/${params.id.toString()}`);
+   const response = await fetch(`http://localhost:5000/getrecorddetails/${params.id.toString()}`);
     
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;

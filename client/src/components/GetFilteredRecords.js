@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router";
  
 const Record = (props) => (
  <tr>
@@ -7,20 +8,21 @@ const Record = (props) => (
    <td>{props.record.pid.cID}</td>
    <td>
 
-	 <Link className="btn btn-link" to={`/detail/${props.record.pid.cID}`}>Detail</Link> |
-     <Link className="btn btn-link" to={`/chartdata/${props.record.pid.cID}`}>Chart</Link>
+	 <Link className="btn btn-link" to={`/getrecorddetails/${props.record.pid.cID}`}>Detail</Link> |
+     <Link className="btn btn-link" to={`/getchartdata/${props.record.pid.cID}`}>Chart</Link>
      
    </td>
  </tr>
 );
  
-export default function RecordList() {
+export default function GetFilteredRecords() {
+ const params = useParams();
  const [records, setRecords] = useState([]);
  
  // This method fetches the records from the database.
  useEffect(() => {
    async function getRecords() {
-     const response = await fetch(`http://localhost:5000/allrecords/`);
+     const response = await fetch(`http://localhost:5000/getfilteredrecords/${params.kS.toString()}`);
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -43,9 +45,11 @@ export default function RecordList() {
  function recordList() {
    return records.map((record) => {
      return (
+	 <>
        <Record
          record={record}
        />
+	  </>
      );
    });
  }
@@ -53,7 +57,7 @@ export default function RecordList() {
  // This following section will display the table with the records of individuals.
  return (
    <div>
-     <h3>Record List</h3>
+     <h3>Filtered List</h3>
      <table className="table table-striped" style={{ marginTop: 20 }}>
        <thead>
          <tr>

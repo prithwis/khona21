@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Redirect } from 'react-router-dom';
+import { Link, Navigate } from "react-router-dom";
  
-export default function Kwery() {
+export default function GetFilter() {
  const params = useParams();
  
  
- const [name, setName] = useState("default"); // '' is the initial state value
+ const [name, setName] = useState('{"exaltG.Ju": {"$eq": true}}'); // '' is the initial state value
  
  /*
  const handleChange = (e) => {
@@ -21,10 +21,9 @@ export default function Kwery() {
   const handleSubmit = (e) => {
     e.preventDefault()
     const message = `data is ${name}`;
-	window.alert(message)
-    return(
-        <Redirect to="/filter"/>
-    )
+	window.alert(message);
+	window.open(`/getfilteredrecords/${name}`);
+
   };
  
  
@@ -33,7 +32,7 @@ export default function Kwery() {
    <div>
    <h3>New Filter</h3>   
    <form onSubmit={handleSubmit}>
-      <label>Enter filter in JSON format:
+      <label>Enter filter  JSON format:
         <input 
           type="text" 
           value={name}
