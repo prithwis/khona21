@@ -13,7 +13,7 @@ export default function Navbar() {
    <div>
      <nav className="navbar navbar-expand-lg navbar-light bg-light">
        <NavLink className="navbar-brand" to="/">
-       <img style={{"width" : 25 + '%'}} src={logo}></img>
+       <img style={{"width" : 25 + '%'}} src={logo} alt="KhonaLogo"></img> 
        </NavLink>
        <button
          className="navbar-toggler"
@@ -29,8 +29,13 @@ export default function Navbar() {
 	   <div className="collapse navbar-collapse" id="navbarSupportedContent">
          <ul className="navbar-nav ml-auto">
            <li className="nav-item">
-             <NavLink className="nav-link" to="/getfilter">
-               Query
+             <NavLink className="nav-link" to="/setfilter">
+               Set Filter
+             </NavLink>
+           </li>
+		   <li className="nav-item">
+             <NavLink className="nav-link" to="/showblog">
+               Blog
              </NavLink>
            </li>
          </ul>

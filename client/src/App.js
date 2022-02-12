@@ -3,10 +3,11 @@ import { Route, Routes } from "react-router-dom";
  
 
 import Navbar from "./components/navbar";
-import GetAllRecords from "./components/GetAllRecords";
+//import GetAllRecords from "./components/GetAllRecords";           // Should not be used for main database
 import GetRecordDetails from "./components/GetRecordDetails";
 import GetChartData from "./components/GetChartData";
-import GetFilter from "./components/GetFilter";
+import SetFilter from "./components/SetFilter";
+import ShowBlog from "./components/ShowBlog";
 import GetFilteredRecords from "./components/GetFilteredRecords";
 
  
@@ -15,11 +16,12 @@ const App = () => {
    <div>
      <Navbar />
      <Routes>
-       <Route exact path="/" element={<GetAllRecords />} />
+       <Route exact path="/" element={<SetFilter />} />
 	   <Route path="/getrecorddetails/:id" element={<GetRecordDetails />} />
 	   <Route path="/getchartdata/:id" element={<GetChartData />} />
-	   <Route path="/getfilter" element={<GetFilter />} />
+	   <Route path="/setfilter" element={<SetFilter />} />
 	   <Route path="/getfilteredrecords/:kS" element={<GetFilteredRecords />} />
+	   <Route path="/showblog" element={<ShowBlog />} />
      </Routes>
    </div>
  );
