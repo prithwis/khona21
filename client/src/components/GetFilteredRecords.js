@@ -38,12 +38,14 @@ export default function GetFilteredRecords() {
    getRecords();
  
    return;
+ //}, []);
  }, [records.length]);
  
  
  
  // This method will map out the records on the table
  function recordList() {
+   //window.alert('recordList');
    return records.map((record) => {
      return (
 	 <>

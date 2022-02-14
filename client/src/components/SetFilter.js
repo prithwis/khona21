@@ -37,8 +37,8 @@ const [filter, setFilter] = useState(JSON.stringify(filter1));
  
   const handleSubmit = (e) => {
     e.preventDefault()
-    const message = `data is ${filter}`;
-	window.alert(message);
+    //const message = `data is ${filter}`;
+	//window.alert(message);
 	window.open(`/getfilteredrecords/${filter}`);
 
   };

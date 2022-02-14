@@ -19,11 +19,13 @@ export default function GetRecordDetails() {
 	 const dbdata = await response.json();
 	 //dbdata = response.json();
 	 //window.alert(JSON.stringify(dbdata));
+	 window.alert('getdata')
      setData(dbdata);
    }
    getData();
    return;
- },[dbdata, params]);
+ },[dbdata.length]);
+// },[dbdata, params]);
  
  return (
    <div>
