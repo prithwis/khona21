@@ -7,8 +7,8 @@ export default function GetRecordDetails() {
  
  useEffect(() => {
    async function getData() {
-   const response = await fetch(`http://localhost:5000/getrecorddetails/${params.id.toString()}`);
-   //const response = await fetch(`http://khona21.cleverapps.io/getrecorddetails/${params.id.toString()}`);
+   //const response = await fetch(`http://localhost:5000/getrecorddetails/${params.id.toString()}`);
+   const response = await fetch(`http://khona21.cleverapps.io/getrecorddetails/${params.id.toString()}`);
     
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;

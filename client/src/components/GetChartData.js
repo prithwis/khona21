@@ -14,26 +14,28 @@ export default function GetChartData() {
  
  let name = null
  let Lalong = null
- //const Tid = { text: 'dummy', x: 180, y: 100 }
- //const T1 = { text: 'Mesh', x: 180, y: 200 }
+ 
+ // Text positions for a Bengal style Horoscope chart
+ 
  const Tx = [
- { text: 'dummy', x: 180, y: 225 },
- { text: '01:', x: 160, y: 70 },
- { text: '02:', x: 30, y: 20 },
- { text: '03:', x: 20, y: 130 },
- { text: '04:', x: 20, y: 225 },
- { text: '05:', x: 20, y: 305 },
- { text: '06:', x: 30, y: 420 },
- { text: '07:', x: 160, y: 360 },
- { text: '08:', x: 302, y: 420 },
- { text: '09:', x: 312, y: 305 },
- { text: '10:', x: 310, y: 225 },
- { text: '11:', x: 312, y: 130 },
- { text: '12:', x: 302, y: 20 }
+ { text: 'dummy', x: 225, y: 225 },
+ { text: '♈️', x: 160, y: 70 },
+ { text: '♉️', x: 30, y: 20 },
+ { text: '♊️', x: 20, y: 130 },
+ { text: '♋️', x: 20, y: 225 },
+ { text: '♌️', x: 20, y: 305 },
+ { text: '♍️', x: 30, y: 420 },
+ { text: '♎️', x: 160, y: 360 },
+ { text: '♏️', x: 302, y: 420 },
+ { text: '♐️', x: 312, y: 305 },
+ { text: '♑️', x: 310, y: 225 },
+ { text: '♒️', x: 312, y: 130 },
+ { text: '♓️', x: 302, y: 20 }
  ]
  
  let pid = null
  let GLon = null
+ let GRet = null
  
  useEffect(() => {
     // dynamically assign the width and height to canvas
@@ -48,8 +50,8 @@ export default function GetChartData() {
  useEffect(() => {
 	 
    async function getData() {
-   const response = await fetch(`http://localhost:5000/getchartdata/${params.id.toString()}`);
-   //const response = await fetch(`http://khona21.cleverapps.io/getchartdata/${params.id.toString()}`);
+   //const response = await fetch(`http://localhost:5000/getchartdata/${params.id.toString()}`);
+   const response = await fetch(`http://khona21.cleverapps.io/getchartdata/${params.id.toString()}`);
     
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -66,18 +68,23 @@ export default function GetChartData() {
 	   name = dbdata.pid.name;
 	   Lalong = dbdata.GLon.La
 	   GLon = dbdata.GLon
-	   
+	   GRet = dbdata.GRet
 	   for ( let i = 1; i < Tx.length; i++) 
 		{
 		  for (const[key, value] of Object.entries(GLon)) {
 		   if (Math.floor(value/30)+1 === i )  // Converting Long to Rashi
 		   {
-		   Tx[i].text = Tx[i].text+'-'+key
+		   Tx[i].text = Tx[i].text+' '+key
+		      
+		   if (GRet[key] === true) {
+			   Tx[i].text = Tx[i].text+'/R'
+		   }
+		   
 		   }
 		  }
 		}
 		
-	   Tx[0].text = name+':'+Lalong.toString()
+	   Tx[0].text = name //+':'+Lalong.toString()
 	   
 	   }
     else {
@@ -95,8 +102,8 @@ export default function GetChartData() {
   
   const drawChart =() => {
 	  
+	// https://www.cluemediator.com/draw-a-line-on-canvas-using-react
 	
-	  
 	drawLine({ x: 150, y: 20, x1: 150, y1: 430 });
 	drawLine({ x: 300, y: 20, x1: 300, y1: 430 });
 	
@@ -108,21 +115,14 @@ export default function GetChartData() {
 	drawLine({ x: 150, y: 300, x1: 20, y1: 430 });
 	drawLine({ x: 300, y: 300, x1: 430, y1: 430 });
 	
+	// https://www.cluemediator.com/write-text-on-canvas-using-react
 	
-	
-	writeText(Tx[0]);
-	writeText(Tx[1]);
-	writeText(Tx[2]);
-	writeText(Tx[3]);
-	writeText(Tx[4]);
-	writeText(Tx[5]);
-	writeText(Tx[6]);
-	writeText(Tx[7]);
-	writeText(Tx[8]);
-	writeText(Tx[9]);
-	writeText(Tx[10]);
-	writeText(Tx[11]);
-	writeText(Tx[12]);
+	//let nameStyle = { fontSize: 30, color: 'green', textAlign: 'center' };
+	let nameStyle ={ fontSize: 18, fontFamily: 'cursive', color: 'red', textAlign: 'center' }
+	writeText(Tx[0],nameStyle);
+	for (let h = 1; h < 13 ; h++)
+	{writeText(Tx[h]);}
+    
 	window.alert('image drawn')
 	  
   }
@@ -155,10 +155,11 @@ export default function GetChartData() {
   
  return (
    <div>
-     <h3>Chart Positions</h3>     
-	 <p>{JSON.stringify(dbdata)}</p>
-	 <hr></hr>
+     <h3>Chart</h3>
 	 <canvas ref={canvas}></canvas>
+	 <hr></hr>
+	 
+	 <p>{JSON.stringify(dbdata)}</p>
    </div>
  );
  

@@ -50,7 +50,7 @@ const [filter, setFilter] = useState(JSON.stringify(filter1));
 	   <table>
 		   <tr>
 			<td>
-			C<img src={p21logo} alt="ParasharLogo"></img>  
+			<img src={p21logo} alt="ParasharLogo"></img>  
 			</td>
 			<td> 
 				<form onSubmit={handleSubmit}> 
